@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ZawgyiTai to Unicode</title>
+    <script src="js/nk_convert.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="main-title">
+        <h1>Zawgyi Tai to Unicode Tai Converter</h1>
+        <h2 style="font-size: 18px;" class="subtitle">Converter Script : P Jai Lon (Nam Khone)</h2>
+    </div>
+    <div class="row" >
+
+        <div class="col" >
+            <textarea id="zawgyi" class="zawgyi" placeholder="Input ZawgyiTai text here..."></textarea>
+            <input type="button" class="btn" value="Clear Input Text" onclick="clearText()">
+        </div>
+
+        <div class="col" >
+            <textarea id="unicode" class="uni" placeholder="Unicode text will appear here...." readonly></textarea>
+            <input type="button" class="btn" value="Copy Unicode Text" onclick="copy()">
+        </div>
+
+        <div style="clear:both"></div>
+    </div>
+
+    <script>
+
+
+    var unicode = document.getElementById("unicode");
+    var zawgyi = document.getElementById("zawgyi");
+
+    function clearText() {
+        unicode.value = "";
+        zawgyi.value = "";
+    }
+
+    function copy(){
+        unicode.select();
+        document.execCommand('copy',false);
+    }
+
+    function nk_convert() {
+        src = zawgyi.value;
+        // console.log(src);
+        unicode.value = zTai_Uni(src);
+    }
+
+    if (zawgyi.addEventListener) {
+        zawgyi.addEventListener('input', function() {
+            nk_convert();
+        }, false);
+    } else if (zawgyi.attachEvent) {
+        zawgyi.attachEvent('onpropertychange', function() {
+            // IE
+            nk_convert();
+        });
+    }
+    clearText();
+    
+    </script>
+</body>
+</html>
